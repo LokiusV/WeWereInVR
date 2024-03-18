@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeWereInVR", "SteamVRInject\WeWereInVR.csproj", "{830EED22-3D43-4D26-AB8D-66962D9045B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{97942A46-5D4A-49D4-B5C1-8024B28B2A04}"
+	ProjectSection(SolutionItems) = preProject
+		SteamVR\Scripts\SteamVR.cs = SteamVR\Scripts\SteamVR.cs
+		SteamVR\Scripts\SteamVR.cs.meta = SteamVR\Scripts\SteamVR.cs.meta
+		SteamVR\Input\SteamVR_Action.cs = SteamVR\Input\SteamVR_Action.cs
+		SteamVR\Scripts\SteamVR_Behaviour.cs = SteamVR\Scripts\SteamVR_Behaviour.cs
+		SteamVR\Scripts\SteamVR_Behaviour.cs.meta = SteamVR\Scripts\SteamVR_Behaviour.cs.meta
+		SteamVR\Scripts\SteamVR_Camera.cs = SteamVR\Scripts\SteamVR_Camera.cs
+		SteamVR\Scripts\SteamVR_Camera.cs.meta = SteamVR\Scripts\SteamVR_Camera.cs.meta
+		SteamVR\Scripts\SteamVR_CameraFlip.cs = SteamVR\Scripts\SteamVR_CameraFlip.cs
+		SteamVR\Scripts\SteamVR_CameraFlip.cs.meta = SteamVR\Scripts\SteamVR_CameraFlip.cs.meta
+		SteamVR\Scripts\SteamVR_CameraMask.cs = SteamVR\Scripts\SteamVR_CameraMask.cs
+		SteamVR\Scripts\SteamVR_CameraMask.cs.meta = SteamVR\Scripts\SteamVR_CameraMask.cs.meta
+		SteamVR\Input\SteamVR_DefaultAction.cs = SteamVR\Input\SteamVR_DefaultAction.cs
+		SteamVR\Scripts\SteamVR_Ears.cs = SteamVR\Scripts\SteamVR_Ears.cs
+		SteamVR\Scripts\SteamVR_Ears.cs.meta = SteamVR\Scripts\SteamVR_Ears.cs.meta
+		SteamVR\Scripts\SteamVR_EnumEqualityComparer.cs = SteamVR\Scripts\SteamVR_EnumEqualityComparer.cs
+		SteamVR\Scripts\SteamVR_EnumEqualityComparer.cs.meta = SteamVR\Scripts\SteamVR_EnumEqualityComparer.cs.meta
+		SteamVR\Scripts\SteamVR_Events.cs = SteamVR\Scripts\SteamVR_Events.cs
+		SteamVR\Scripts\SteamVR_Events.cs.meta = SteamVR\Scripts\SteamVR_Events.cs.meta
+		SteamVR\Scripts\SteamVR_ExternalCamera.cs = SteamVR\Scripts\SteamVR_ExternalCamera.cs
+		SteamVR\Scripts\SteamVR_ExternalCamera.cs.meta = SteamVR\Scripts\SteamVR_ExternalCamera.cs.meta
+		SteamVR\Scripts\SteamVR_Fade.cs = SteamVR\Scripts\SteamVR_Fade.cs
+		SteamVR\Scripts\SteamVR_Fade.cs.meta = SteamVR\Scripts\SteamVR_Fade.cs.meta
+		SteamVR\Scripts\SteamVR_Frustum.cs = SteamVR\Scripts\SteamVR_Frustum.cs
+		SteamVR\Scripts\SteamVR_Frustum.cs.meta = SteamVR\Scripts\SteamVR_Frustum.cs.meta
+		SteamVR\Scripts\SteamVR_IK.cs = SteamVR\Scripts\SteamVR_IK.cs
+		SteamVR\Scripts\SteamVR_IK.cs.meta = SteamVR\Scripts\SteamVR_IK.cs.meta
+		SteamVRInject\SteamVR\Input\SteamVR_Input.cs = SteamVRInject\SteamVR\Input\SteamVR_Input.cs
+		SteamVR\Input\SteamVR_Input_Sources.cs = SteamVR\Input\SteamVR_Input_Sources.cs
+		SteamVR\Scripts\SteamVR_LoadLevel.cs = SteamVR\Scripts\SteamVR_LoadLevel.cs
+		SteamVR\Scripts\SteamVR_LoadLevel.cs.meta = SteamVR\Scripts\SteamVR_LoadLevel.cs.meta
+		SteamVR\Scripts\SteamVR_Menu.cs = SteamVR\Scripts\SteamVR_Menu.cs
+		SteamVR\Scripts\SteamVR_Menu.cs.meta = SteamVR\Scripts\SteamVR_Menu.cs.meta
+		SteamVR\Scripts\SteamVR_Overlay.cs = SteamVR\Scripts\SteamVR_Overlay.cs
+		SteamVR\Scripts\SteamVR_Overlay.cs.meta = SteamVR\Scripts\SteamVR_Overlay.cs.meta
+		SteamVR\Scripts\SteamVR_PlayArea.cs = SteamVR\Scripts\SteamVR_PlayArea.cs
+		SteamVR\Scripts\SteamVR_PlayArea.cs.meta = SteamVR\Scripts\SteamVR_PlayArea.cs.meta
+		SteamVR\Scripts\SteamVR_Render.cs = SteamVR\Scripts\SteamVR_Render.cs
+		SteamVR\Scripts\SteamVR_Render.cs.meta = SteamVR\Scripts\SteamVR_Render.cs.meta
+		SteamVR\Scripts\SteamVR_RenderModel.cs = SteamVR\Scripts\SteamVR_RenderModel.cs
+		SteamVR\Scripts\SteamVR_RenderModel.cs.meta = SteamVR\Scripts\SteamVR_RenderModel.cs.meta
+		SteamVR\Scripts\SteamVR_RingBuffer.cs = SteamVR\Scripts\SteamVR_RingBuffer.cs
+		SteamVR\Scripts\SteamVR_RingBuffer.cs.meta = SteamVR\Scripts\SteamVR_RingBuffer.cs.meta
+		SteamVR\Scripts\SteamVR_Settings.cs = SteamVR\Scripts\SteamVR_Settings.cs
+		SteamVR\Scripts\SteamVR_Settings.cs.meta = SteamVR\Scripts\SteamVR_Settings.cs.meta
+		SteamVR\Scripts\SteamVR_Skybox.cs = SteamVR\Scripts\SteamVR_Skybox.cs
+		SteamVR\Scripts\SteamVR_Skybox.cs.meta = SteamVR\Scripts\SteamVR_Skybox.cs.meta
+		SteamVR\Scripts\SteamVR_SphericalProjection.cs = SteamVR\Scripts\SteamVR_SphericalProjection.cs
+		SteamVR\Scripts\SteamVR_SphericalProjection.cs.meta = SteamVR\Scripts\SteamVR_SphericalProjection.cs.meta
+		SteamVR\Scripts\SteamVR_TrackedCamera.cs = SteamVR\Scripts\SteamVR_TrackedCamera.cs
+		SteamVR\Scripts\SteamVR_TrackedCamera.cs.meta = SteamVR\Scripts\SteamVR_TrackedCamera.cs.meta
+		SteamVR\Scripts\SteamVR_TrackedObject.cs = SteamVR\Scripts\SteamVR_TrackedObject.cs
+		SteamVR\Scripts\SteamVR_TrackedObject.cs.meta = SteamVR\Scripts\SteamVR_TrackedObject.cs.meta
+		SteamVR\Scripts\SteamVR_Utils.cs = SteamVR\Scripts\SteamVR_Utils.cs
+		SteamVR\Scripts\SteamVR_Utils.cs.meta = SteamVR\Scripts\SteamVR_Utils.cs.meta
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRPatcher", "VRPatcher\VRPatcher.csproj", "{7DA81767-8DF0-4A37-9EE5-ECCA723BCD22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{830EED22-3D43-4D26-AB8D-66962D9045B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{830EED22-3D43-4D26-AB8D-66962D9045B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{830EED22-3D43-4D26-AB8D-66962D9045B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{830EED22-3D43-4D26-AB8D-66962D9045B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA81767-8DF0-4A37-9EE5-ECCA723BCD22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA81767-8DF0-4A37-9EE5-ECCA723BCD22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA81767-8DF0-4A37-9EE5-ECCA723BCD22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA81767-8DF0-4A37-9EE5-ECCA723BCD22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55CDCD57-B373-4262-A9F9-9D3C21CA0FB8}
+	EndGlobalSection
+EndGlobal

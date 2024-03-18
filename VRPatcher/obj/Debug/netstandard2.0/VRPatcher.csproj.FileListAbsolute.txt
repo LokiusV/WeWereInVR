@@ -1,0 +1,8 @@
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\bin\Debug\netstandard2.0\VRPatcher.deps.json
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\bin\Debug\netstandard2.0\VRPatcher.dll
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\bin\Debug\netstandard2.0\VRPatcher.pdb
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\obj\Debug\netstandard2.0\VRPatcher.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\obj\Debug\netstandard2.0\VRPatcher.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\obj\Debug\netstandard2.0\VRPatcher.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\obj\Debug\netstandard2.0\VRPatcher.dll
+C:\Users\User\source\repos\SteamVRInject - Kopie\VRPatcher\obj\Debug\netstandard2.0\VRPatcher.pdb
