@@ -40,7 +40,7 @@
 20. And into the last your thumbstick press(this is your jump button)
 21. Copy everything located under WeWereInVR/VRPatcher/bin/debug/netstandard2.0 to (YourWeWereHereGameDirectory)/BepInEx/Patchers
 22. Copy netstandard2.0.dll (WeWereHere/(Pre-Early-Release)GameFolderFiles/netstandard2.0.dll) to (YourWeWereHereGameDirectory)/BepInEx/Patchers
-23. Copy AssetTool.NET.dll (WeWereHere/(Pre-Early-Release)GameFolderFiles/AssetTool.NET.dll) to (YourWeWereHereGameDirectory)/BepInEx/Patchers
+23. Copy AssetTool.NET.dll (WeWereHere/(Pre-Early-Release)GameFolderFiles/AssetTools/AssetTool.NET.dll) to (YourWeWereHereGameDirectory)/BepInEx/Patchers
 24. If I haven't forgotten anything, you should now be able to just start WeWereHere from steam and it should open in VR
  
 
