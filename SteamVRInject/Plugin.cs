@@ -506,7 +506,7 @@ public class BarometerControllerPatch
         minigameIsActiveField.SetValue(__instance, minigameIsActive);
 
         
-        Debug.Log("ToggleMiniGame is being called!");
+        
 
         
         return false;
@@ -629,27 +629,38 @@ public class SteamVRSetup : BaseUnityPlugin
         //MainMenuPatch.CreateMenuController("Canvas");
         Var.Initialize();
         IngameUIWorldSpace.setScale("Canvas", 0.001f);
-        
+        Debug.Log("Testing haptics");
+        //TriggerHapticFeedback(XRNode.RightHand,1f);
+        //TriggerHapticFeedback(XRNode.LeftHand,1f);
+
 
     }
-    //private void TriggerHapticFeedback()
+    //public void TriggerHapticFeedback(XRNode hand,float length)
     //{
-    //    if (XRSettings.enabled)
+    //    Debug.Log("Here");
+    //    InputDevice device = InputDevices.GetDeviceAtXRNode(hand);
+    //    Debug.Log(device);
+    //    HapticCapabilities capabilities;
+    //    device.SendHapticImpulse(0, 0.5f, length);
+    //    if (device.TryGetHapticCapabilities(out capabilities))
     //    {
-    //        // Use Unity's Input System haptic feedback API for Oculus
-    //        // This is a hypothetical example, and the actual API might differ
-    //        // Refer to Unity Input System and Oculus documentation for accurate code
-    //        InputDevice device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-    //        HapticCapabilities capabilities;
-    //        if (device.TryGetHapticCapabilities(out capabilities))
+    //        if (capabilities.supportsImpulse)
     //        {
-    //            if (capabilities.supportsImpulse)
-    //            {
-    //                device.SendHapticImpulse(0, 0.5f, 0.1f);
-    //            }
+    //            Debug.Log("Haptic!");
+    //            device.SendHapticImpulse(0, 0.5f, length);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("No Haptics supported.");
     //        }
     //    }
+    //    else
+    //    {
+    //        Debug.Log("Device Error.Haptics deactivated");
+    //    }
     //}
+    
+
 }
 
 
