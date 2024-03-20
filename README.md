@@ -6,7 +6,7 @@
  The mod is a passion project of mine and I made it because I love the flatscreen game and thought it would be a perfect fit for VR.
  I'm not making any money with this mod and have a dayjob so don't expect bugs you find and report to be fixed immediately.
 
-#Installing The Mod
+# Installing The Mod
  I will make a release and a small website with the installation instructions in a few days/weeks.
 
 # Building the Project:
