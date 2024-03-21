@@ -1,5 +1,5 @@
 # WeWereInVR
- An unofficial VR mod for the game We Were Here
+
 
 # About
  WeWereInVR is an unofficial VR mod for the game We Were Here. 
