@@ -1,13 +1,15 @@
 # WeWereInVR
- An unofficial VR mod for the game We Were Here
+### ATTENTION: Setting or entering lobby passwords currently doesn't work!!!
+
 
 # About
  WeWereInVR is an unofficial VR mod for the game We Were Here. 
  The mod is a passion project of mine and I made it because I love the flatscreen game and thought it would be a perfect fit for VR.
  This project uses BepInEx.
+ For more infos visit https://sites.google.com/view/wewereinvr/about
 
 # Installing The Mod
- I will make a release and a small website with the installation instructions in a few days/weeks.
+ For installation instructions go to https://sites.google.com/view/wewereinvr/installation-instructions
 
 # Building the Project:
 ## Requirements: -Visual Studio 2022
