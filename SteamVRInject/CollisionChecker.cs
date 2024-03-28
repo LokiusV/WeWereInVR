@@ -331,6 +331,12 @@ namespace WeWereHereVR
                     tile.OnInteraction(MakePlayer.photonViewID);
 
                 }
+                else if (gameObject.GetComponent<TrapDoorView>() != null)//any chess board tile
+                {
+                    TrapDoorView door = gameObject.GetComponent<TrapDoorView>();
+                    door.OnInteraction(MakePlayer.photonViewID);
+
+                }
                 else if (gameObject.GetComponent<HieroglyphSlabSlotView>() != null)//symbol slots
                 {
                     if (gameObject.GetComponentInChildren<HieroglyphSlabPickup>() != null)//if tehy're not empty
