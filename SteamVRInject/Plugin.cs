@@ -16,14 +16,7 @@ using System.Reflection.Emit;
 using System.IO;
 using System;
 using WeWereHereVR;
-
-
-
-
-
-
-
-
+using Valve.VR.Extras;
 
 [HarmonyPatch(typeof(MainMenuController), "Start")]
 public class MainMenuPatch
@@ -309,26 +302,38 @@ public class MovementTogglePatch
     {
         //Var.mainCamera.enabled = true;
         //Var.uiCamera.enabled = false;
+
         //GameObject.Destroy(Var.uiCamera.gameObject);
-        GameObject canvaObject = GameObject.Find("IngameUI");
-        Debug.Log("Found");
-        Canvas canva = canvaObject.GetComponent<Canvas>();
-        GameObject rawImageObject = GameObject.Find("VideoRawImage");
-        rawImageObject.SetActive(false);
-        GameObject laserPointer = GameObject.Find("lp");
-        laserPointer.SetActive(false);
-        GameObject.Destroy(laserPointer);
+        GameObject laserPointer = null;
+        Canvas canva = null;
+        try
+        {
+            GameObject canvaObject = GameObject.Find("IngameUI");
+            Debug.Log("Found");
+            canva = canvaObject.GetComponent<Canvas>();
+            GameObject rawImageObject = GameObject.Find("VideoRawImage");
+            rawImageObject.SetActive(false);
+            laserPointer = GameObject.Find("lp");
+            laserPointer.SetActive(false);
+            GameObject.Destroy(laserPointer);
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e.ToString());
+            
+        }
         try
         {
             laserPointer = GameObject.Find("LaserPointer");
             laserPointer.SetActive(false);
             GameObject.Destroy(laserPointer);
+            canva.renderMode = UnityEngine.RenderMode.ScreenSpaceOverlay;
         }
         catch (Exception e)
         {
             Debug.Log(e);
         }
-        canva.renderMode = UnityEngine.RenderMode.ScreenSpaceOverlay;
+        
         MakePlayer.SetHeight(__instance);
     }
 }
@@ -598,8 +603,8 @@ public class SteamVRSetup : BaseUnityPlugin
 {
     void Awake()
     {
-        //QualitySettings.vSyncCount = 0;
-        //Screen.SetResolution(1920, 1080, true);
+        QualitySettings.vSyncCount = 0;
+        Screen.SetResolution(1920, 1080, true);
         string filePath = Path.Combine(Paths.PluginPath, "Settings.txt");
         float targetTimeStep;
         try //to read the Settings.txt file
