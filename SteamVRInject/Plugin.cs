@@ -154,12 +154,27 @@ public class GameOptionsPatch
     }
 }
 [HarmonyPatch(typeof(MatchmakingController), "Start")]
-public class LobbyPatch
+public class LobbyPatch:MonoBehaviour
 {
     [HarmonyPostfix]
     public static void Postfix(MatchmakingController __instance)
     {
-        Debug.Log("attached");
+        string pluginFolderPath = Paths.PluginPath;
+
+
+        string assetBundlePath = Path.Combine(pluginFolderPath, "AssetBundle/keyboard");
+
+
+        AssetBundle assetBundle = AssetBundle.LoadFromFile(assetBundlePath);
+
+
+
+
+        GameObject keyboardPrefab = assetBundle.LoadAsset<GameObject>("kbd.prefab");
+        GameObject keyboard = Instantiate(keyboardPrefab);
+        keyboard.name = "Keyboard";
+        keyboard.transform.position = new Vector3(0, 0, 0);
+        keyboard.AddComponent<KeyboardController>();
         MainMenuPatch.CreateMenuController("LobbyPrefab");
 
     }

@@ -66,6 +66,7 @@ namespace WeWereHereVR
                 
                 
                 Button[] uiButtons = FindObjectsOfType<Button>();
+                InputField[] inputFields= FindObjectsOfType<InputField>();
                 foreach (Button uiButton in uiButtons)
                 {
                     if (uiButton.gameObject.GetComponent<BoxCollider>() == null && gameObject.activeSelf)
@@ -89,6 +90,30 @@ namespace WeWereHereVR
                         uiButton.gameObject.GetComponent<BoxCollider>().enabled = false;
                     }
                 }
+                foreach (InputField inputField in inputFields)
+                {
+                    if (inputField.gameObject.GetComponent<BoxCollider>() == null && gameObject.activeSelf)
+                    {
+
+                        RectTransform buttonRectTransform = inputField.GetComponent<RectTransform>();
+
+
+                        Vector2 inputSize = buttonRectTransform.sizeDelta;
+
+
+                        BoxCollider boxCollider = inputField.gameObject.AddComponent<BoxCollider>();
+
+
+                        boxCollider.size = new Vector3(inputSize.x, inputSize.y, 1f);
+                        //boxCollider.enabled = true;
+                        //boxCollider.isTrigger = true;
+                    }
+                    else if (inputField.gameObject.GetComponent<BoxCollider>() != null && gameObject.activeSelf == false)
+                    {
+                        inputField.gameObject.GetComponent<BoxCollider>().enabled = false;
+                    }
+                }
+
                 RaycastHit hit;
                 if (Physics.Raycast(lineStart, trackedPoseDriver.transform.forward, out hit, 10f)) 
                 {
@@ -101,7 +126,13 @@ namespace WeWereHereVR
                         {
                             GameObject parentObject = collider.gameObject;
                             Button hitButton = parentObject.GetComponent<Button>();
-                            if (hitButton != null && parentObject.GetComponent<ServerListItem>() == null)
+                            InputField hitField=parentObject.GetComponent<InputField>();
+                            if (hitField != null && GameObject.Find("Keyboard") != null)
+                            {
+                                GameObject.Find("Keyboard").GetComponent<KeyboardController>().inputField = hitField;
+                                hitField.Select();
+                            }
+                            else if (hitButton != null && parentObject.GetComponent<ServerListItem>() == null)
                             {
                                 hitButton.onClick.Invoke();
                                 Debug.Log("Click");
