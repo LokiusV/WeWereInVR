@@ -175,6 +175,7 @@ public class LobbyPatch:MonoBehaviour
         keyboard.name = "Keyboard";
         keyboard.transform.position = new Vector3(0, 0, 0);
         keyboard.AddComponent<KeyboardController>();
+        assetBundle.Unload(false);
         MainMenuPatch.CreateMenuController("LobbyPrefab");
 
     }
@@ -263,6 +264,47 @@ class RoomCreationStatusPatch:MonoBehaviour
         }
     }
 }
+[HarmonyPatch(typeof(MatchmakingController))]
+[HarmonyPatch("InputPasswordStatus")]
+class PasswordPatch : MonoBehaviour
+{
+    static void Postfix(object[] value)
+    {
+
+        bool roomCreationStatus = (bool)value[0];
+
+
+        MatchmakingController matchmakingController = FindObjectOfType<MatchmakingController>();
+        if (matchmakingController != null)
+        {
+            //FieldInfo lobbyPanelField = AccessTools.Field(typeof(MatchmakingController), "lobbyPanel");
+            //GameObject lobbyPanel = (GameObject)lobbyPanelField.GetValue(matchmakingController);
+
+            //if (lobbyPanel != null)
+            //{
+
+            //    if (roomCreationStatus)
+            //    {
+            //        lobbyPanel.SetActive(value: false);
+            //    }
+            //}
+            //else
+            //{
+            //    Debug.LogError(".");//necessary because when brute forcing a load to this scene, this sometimes happens
+            //}
+            //GameObject.Find("ServerBrowser").SetActive(false);
+            Button[] buttons = GameObject.Find("ServerBrowser").GetComponentsInChildren<Button>();
+            foreach (Button button in buttons)
+            {
+                button.gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+        }
+        else
+        {
+            Debug.LogError(".");//necessary because when brute forcing a load to this scene, this sometimes happens
+        }
+    }
+}
 [HarmonyPatch(typeof(PlayerMovement), "Start")]
 public class MousePatch:MonoBehaviour
 {
@@ -297,6 +339,17 @@ public class BarometerPatch : MonoBehaviour
         Var.barometerView = __instance;
     }
 }
+//[HarmonyPatch(typeof(GeneratorController), "OnGeneratorCrankUsed")]
+//public class ChessLaserPatch : MonoBehaviour
+//{
+//    [HarmonyPostfix]
+//    static void Postfix(GeneratorController __instance, object[] arg0)
+//    {
+//        ChessLaser chessLaserInstance = new ChessLaser();
+//        chessLaserInstance.Initialize();
+
+//    }
+//}
 [HarmonyPatch(typeof(BarometerView), "OnBarometerSolved")]
 public class BarometerEndPatch : MonoBehaviour
 {
@@ -613,7 +666,7 @@ public class WalkieTalkieDestroyPatch
 
 }
 
-[BepInPlugin("com.Lokius.WeWereInVR", "WeWereInVR", "0.1.0")]
+[BepInPlugin("com.Lokius.WeWereInVR", "WeWereInVR", "0.3.1")]
 public class SteamVRSetup : BaseUnityPlugin
 {
     void Awake()

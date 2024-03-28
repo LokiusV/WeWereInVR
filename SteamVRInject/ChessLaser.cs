@@ -9,14 +9,17 @@ using UnityEngine.SpatialTracking;
 
 namespace WeWereHereVR
 {
-    public class ChessLaser
+    public class ChessLaser:MonoBehaviour
     {
         private LineRenderer lineRenderer;
-        private TrackedPoseDriver trackedPoseDriver;
-        public void Initialize()
+        //private TrackedPoseDriver trackedPoseDriver;
+        private GameObject laserObject;
+        private GameObject rightC;
+        public void Initialize(GameObject rightController)
         {
             //create all the new gameObjects
-            GameObject laserObject = new GameObject("ChessLazer");
+            laserObject = new GameObject("ChessLaser");
+            Var.chessLaser = laserObject;
 
             lineRenderer = laserObject.AddComponent<LineRenderer>();
 
@@ -24,27 +27,41 @@ namespace WeWereHereVR
             lineRenderer.startWidth = 0.01f;
             lineRenderer.endWidth = 0.01f;
             lineRenderer.positionCount = 2;
-            laserObject.transform.SetParent(GameObject.Find("offset").transform);
+            Material newMaterial = new Material(Shader.Find("Sprites/Default"));
+            newMaterial.SetFloat("_Mode", 1);
+            
+            newMaterial.color = Color.white; 
 
-            TrackedPoseDriver trackedPoseDriver = laserObject.AddComponent<TrackedPoseDriver>();
-            trackedPoseDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRController, TrackedPoseDriver.TrackedPose.RightPose);
+
+            lineRenderer.material = newMaterial;
+            laserObject.transform.SetParent(rightController.transform);
+
+            //TrackedPoseDriver trackedPoseDriver = laserObject.AddComponent<TrackedPoseDriver>();
+            //trackedPoseDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRController, TrackedPoseDriver.TrackedPose.RightPose);
+            //trackedPoseDriver=rightController.GetComponent<TrackedPoseDriver>();
+            //rightC = rightController;
+            laserObject.SetActive(false);
         }
-        void Update()
-        { 
-            if (trackedPoseDriver != null && lineRenderer != null)
-            {
-
-                
-
-                Vector3 lineStart = trackedPoseDriver.transform.position;
-                Vector3 lineEnd = trackedPoseDriver.transform.position + trackedPoseDriver.transform.forward * 10f;
+        public void Update()
+        {
+            
+            //Vector3 controllerPosition = trackedPoseDriver.transform.localPosition;
+            //Quaternion controllerRotation = trackedPoseDriver.transform.localRotation;
 
 
-                lineRenderer.SetPosition(0, lineStart);
-                lineRenderer.SetPosition(1, lineEnd);
-            }
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit[] hits = Physics.RaycastAll(ray); //did not know this function existed... thanks ChatGPT!
+            //trackedPoseDriver.transform.localPosition = controllerPosition;
+            //trackedPoseDriver.transform.localRotation = controllerRotation;
+
+
+
+            //Vector3 lineStart = trackedPoseDriver.transform.position;
+            //Vector3 lineEnd = trackedPoseDriver.transform.position + trackedPoseDriver.transform.forward * 10f;
+            Vector3 lineStart = laserObject.transform.position;
+            Vector3 lineEnd = laserObject.transform.position + laserObject.transform.forward * 10f;
+            lineRenderer.SetPosition(0, lineStart);
+            lineRenderer.SetPosition(1, lineEnd);
+            
+            RaycastHit[] hits = Physics.RaycastAll(lineStart, laserObject.transform.forward, 10f);
             if (Input.GetKeyDown(Var.acceptButton))
             {
 
@@ -59,6 +76,8 @@ namespace WeWereHereVR
                     if (tile != null)
                     {
                         tile.OnInteraction(MakePlayer.photonViewID);
+                        laserObject.SetActive(false);
+                        
                     }
 
                 }

@@ -161,6 +161,8 @@ namespace WeWereHereVR
                     }
 
                 }
+                ChessLaser chessLaserInstance = rightController.AddComponent<ChessLaser>();
+                chessLaserInstance.Initialize(rightController);
 
                 done2 = true;
             }

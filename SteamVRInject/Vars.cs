@@ -33,6 +33,7 @@ namespace WeWereHereVR
 
         public static Camera mainCamera;
         public static Camera uiCamera;
+        public static GameObject chessLaser;
 
         //Sets up the correct bindings
         public static void Initialize()

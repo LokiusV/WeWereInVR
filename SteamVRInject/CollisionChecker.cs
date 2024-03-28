@@ -314,6 +314,15 @@ namespace WeWereHereVR
                 {
                     ChessPiece piece = gameObject.GetComponent<ChessPiece>();
                     piece.OnInteraction(MakePlayer.photonViewID);
+                    if (Var.chessLaser != null)
+                    {
+                        Debug.Log("Hewwo");
+                        Var.chessLaser.SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.Log("whoops");
+                    }
 
                 }
                 else if (gameObject.GetComponent<ChessBoardTileView>() != null)//any chess board tile

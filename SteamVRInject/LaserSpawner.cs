@@ -67,6 +67,7 @@ namespace WeWereHereVR
                 
                 Button[] uiButtons = FindObjectsOfType<Button>();
                 InputField[] inputFields= FindObjectsOfType<InputField>();
+                Toggle[] toggles = FindObjectsOfType<Toggle>();
                 foreach (Button uiButton in uiButtons)
                 {
                     if (uiButton.gameObject.GetComponent<BoxCollider>() == null && gameObject.activeSelf)
@@ -113,7 +114,29 @@ namespace WeWereHereVR
                         inputField.gameObject.GetComponent<BoxCollider>().enabled = false;
                     }
                 }
+                foreach (Toggle toggle in toggles)
+                {
+                    if (toggle.gameObject.GetComponent<BoxCollider>() == null && gameObject.activeSelf)
+                    {
 
+                        RectTransform buttonRectTransform = toggle.GetComponent<RectTransform>();
+
+
+                        Vector2 toggleSize = buttonRectTransform.sizeDelta;
+
+
+                        BoxCollider boxCollider = toggle.gameObject.AddComponent<BoxCollider>();
+
+
+                        boxCollider.size = new Vector3(toggleSize.x, toggleSize.y, 1f);
+                        //boxCollider.enabled = true;
+                        //boxCollider.isTrigger = true;
+                    }
+                    else if (toggle.gameObject.GetComponent<BoxCollider>() != null && gameObject.activeSelf == false)
+                    {
+                        toggle.gameObject.GetComponent<BoxCollider>().enabled = false;
+                    }
+                }
                 RaycastHit hit;
                 if (Physics.Raycast(lineStart, trackedPoseDriver.transform.forward, out hit, 10f)) 
                 {
@@ -127,7 +150,12 @@ namespace WeWereHereVR
                             GameObject parentObject = collider.gameObject;
                             Button hitButton = parentObject.GetComponent<Button>();
                             InputField hitField=parentObject.GetComponent<InputField>();
-                            if (hitField != null && GameObject.Find("Keyboard") != null)
+                            Toggle hitToggle= parentObject.GetComponent<Toggle>();
+                            if (hitToggle != null)
+                            {
+                                hitToggle.isOn=!hitToggle.isOn;
+                            }
+                            else if (hitField != null && GameObject.Find("Keyboard") != null)
                             {
                                 GameObject.Find("Keyboard").GetComponent<KeyboardController>().inputField = hitField;
                                 hitField.Select();
