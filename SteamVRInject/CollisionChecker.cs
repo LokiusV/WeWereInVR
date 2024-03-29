@@ -461,6 +461,17 @@ namespace WeWereHereVR
                 }
 
             }
+            else if (gameObject.GetComponent<TheaterHandleDirectionView>() != null)
+            {
+                
+                TheaterHandleDirectionView handle = gameObject.GetComponent<TheaterHandleDirectionView>();
+                var moveHandleMethod = AccessTools.Method(typeof(TheaterHandleDirectionView), "OnMouseDown");
+                moveHandleMethod.Invoke(handle, new object[] {});
+                    
+
+                
+
+            }
         }
         //this makes sure that the script above will not interact with any colliders that are attached to the player
         public static void Initiate(GameObject gameObject)
