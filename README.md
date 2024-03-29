@@ -1,5 +1,5 @@
 # WeWereInVR
-### ATTENTION: Setting or entering lobby passwords currently doesn't work!!!
+
 
 
 # About
