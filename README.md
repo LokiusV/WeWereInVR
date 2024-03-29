@@ -18,8 +18,8 @@
 	       -We Were Here
 	       -Unity Version 2018.4.12f1 or alternatively only the correct openvr_api.dll (located in (Pre-Early-Release)GameFolderFiles
  
-## How To build the project:			IMPORTANT: If you just want to play the mod, please just go to releases and install the latest release. Building it is only necessary, if you want to modify it!
- 
+## How To build the project:			
+IMPORTANT: If you just want to play the mod, please just go to releases and install the latest release. Building it is only necessary, if you want to modify it!
 1. Open up SteamVRInject.sln in Visual Studio 2022/n
 2. add any missing references(if any) //I just noticed I still left "using Valve.VR" in the code. This will throw an error if SteamVR.dll isn't present(which it isn't anymore). Just delete that line
 3. click on "Build SteamVR Inject"
