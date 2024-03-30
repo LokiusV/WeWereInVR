@@ -9,7 +9,7 @@
  For more infos visit https://sites.google.com/view/wewereinvr/about
 
 # Installing The Mod
- For installation instructions go to https://sites.google.com/view/wewereinvr/installation-instructions
+ For installation instructions please go to https://sites.google.com/view/wewereinvr/installation-instructions
 
 # Building the Project:
 ## Requirements: -Visual Studio 2022
