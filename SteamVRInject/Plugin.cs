@@ -702,7 +702,7 @@ public class SteamVRSetup : BaseUnityPlugin
         //MainMenuPatch.CreateMenuController("Canvas");
         Var.Initialize();
         IngameUIWorldSpace.setScale("Canvas", 0.001f);
-        Debug.Log("Testing haptics");
+        //Debug.Log("Testing haptics");
         //TriggerHapticFeedback(XRNode.RightHand,1f);
         //TriggerHapticFeedback(XRNode.LeftHand,1f);
 

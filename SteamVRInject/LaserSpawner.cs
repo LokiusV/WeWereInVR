@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Linq;
 
 namespace WeWereHereVR
 {
@@ -62,12 +63,16 @@ namespace WeWereHereVR
 
                 
                 lineRenderer.SetPosition(0, lineStart); 
-                lineRenderer.SetPosition(1, lineEnd); 
-                
-                
+                lineRenderer.SetPosition(1, lineEnd);
+
+                //all of this is obviously awful for performance but necessary, because the server buttons, fields, etc. Get created after the initialization of the laser pointer(when the server list refreshes)
+                //I could just hook into the server browser refresh method but this was easier for the time.
+                //TODO: put in server browser refresh and LaserSpawner.Initialize() instead
                 Button[] uiButtons = FindObjectsOfType<Button>();
                 InputField[] inputFields= FindObjectsOfType<InputField>();
                 Toggle[] toggles = FindObjectsOfType<Toggle>();
+                Dropdown[] dropdowns = FindObjectsOfType<Dropdown>();
+                Scrollbar[] sliders = FindObjectsOfType<Scrollbar>();
                 foreach (Button uiButton in uiButtons)
                 {
                     if (uiButton.gameObject.GetComponent<BoxCollider>() == null && gameObject.activeSelf)
@@ -137,6 +142,42 @@ namespace WeWereHereVR
                         toggle.gameObject.GetComponent<BoxCollider>().enabled = false;
                     }
                 }
+                foreach (Dropdown dropdown in dropdowns)
+                {
+                    if (dropdown.gameObject.GetComponent<BoxCollider>() == null && gameObject.activeSelf)
+                    {
+
+                        RectTransform buttonRectTransform = dropdown.GetComponent<RectTransform>();
+
+
+                        Vector2 buttonSize = buttonRectTransform.sizeDelta;
+
+
+                        BoxCollider boxCollider = dropdown.gameObject.AddComponent<BoxCollider>();
+
+
+                        boxCollider.size = new Vector3(buttonSize.x, buttonSize.y, 1f);
+                        //boxCollider.enabled = true;
+                        //boxCollider.isTrigger = true;
+                    }
+                    else if (dropdown.gameObject.GetComponent<BoxCollider>() != null && gameObject.activeSelf == false)
+                    {
+                        dropdown.gameObject.GetComponent<BoxCollider>().enabled = false;
+                    }
+                }
+                //Debug.Log(Input.GetAxis("joy_0_axis_1"));
+                
+                float axisValue = Input.GetAxis("joy_0_axis_1");
+
+                if (Mathf.Abs(axisValue) >= 0.3f)
+                {
+                    foreach (Scrollbar slider in sliders)
+                    {
+                        slider.value = Mathf.Clamp01(slider.value -axisValue * Time.deltaTime);
+                        //Debug.Log(slider.value);
+                        
+                    }
+                }
                 RaycastHit hit;
                 if (Physics.Raycast(lineStart, trackedPoseDriver.transform.forward, out hit, 10f)) 
                 {
@@ -151,9 +192,22 @@ namespace WeWereHereVR
                             Button hitButton = parentObject.GetComponent<Button>();
                             InputField hitField=parentObject.GetComponent<InputField>();
                             Toggle hitToggle= parentObject.GetComponent<Toggle>();
+                            Dropdown hitDropdown = parentObject.GetComponent<Dropdown>();
                             if (hitToggle != null)
                             {
                                 hitToggle.isOn=!hitToggle.isOn;
+                            }
+                            else if (hitDropdown != null)
+                            {
+                                if (hitDropdown.value+1 >= hitDropdown.options.Count)
+                                {
+                                    hitDropdown.value = 0;
+                                }
+                                else
+                                {
+                                    hitDropdown.value++;
+                                }
+                                hitDropdown.RefreshShownValue();
                             }
                             else if (hitField != null && GameObject.Find("Keyboard") != null)
                             {
