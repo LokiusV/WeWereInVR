@@ -41,7 +41,7 @@ namespace WeWereHereVR
             eventSystem = existingManager.GetComponent<EventSystem>();
             canva.renderMode = UnityEngine.RenderMode.WorldSpace;
             existingObject.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
-            existingObject.transform.position = new Vector3(0, 1.5f, 0.5f);
+            existingObject.transform.position = Camera.main.transform.position + new Vector3(0, 0, 2f);//new Vector3(0, 1.5f, 0.5f);
 
 
         }
