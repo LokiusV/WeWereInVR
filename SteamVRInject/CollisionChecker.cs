@@ -310,6 +310,7 @@ namespace WeWereHereVR
                     switcharoo.OnInteraction(MakePlayer.photonViewID);
 
                 }
+
                 else if (gameObject.GetComponent<ChessPiece>() != null)//any chess piece
                 {
                     ChessPiece piece = gameObject.GetComponent<ChessPiece>();
@@ -335,6 +336,17 @@ namespace WeWereHereVR
                 {
                     TrapDoorView door = gameObject.GetComponent<TrapDoorView>();
                     door.OnInteraction(MakePlayer.photonViewID);
+
+                }
+                else if (gameObject.GetComponent<TheaterHandleDirectionView>() != null)
+                {
+
+                    TheaterHandleDirectionView handle = gameObject.GetComponent<TheaterHandleDirectionView>();
+                    var moveHandleMethod = AccessTools.Method(typeof(TheaterHandleDirectionView), "OnMouseDown");
+                    moveHandleMethod.Invoke(handle, new object[] { });
+
+
+
 
                 }
                 else if (gameObject.GetComponent<HieroglyphSlabSlotView>() != null)//symbol slots
