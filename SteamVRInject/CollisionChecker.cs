@@ -81,6 +81,7 @@ namespace WeWereHereVR
                 if (!held)
                 {
                     CollisionAction(Hand, closestObject);
+                    
                 }
                 return closestObject;
             }
@@ -410,6 +411,14 @@ namespace WeWereHereVR
                     //        break;
                     //}
                 }
+            try
+            {
+                Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+            }
+            catch
+            {
+                Debug.Log("catched");
+            }
         }
         
         public static GameObject CheckCollisionWithIndex(GameObject Hand)

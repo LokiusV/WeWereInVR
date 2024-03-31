@@ -163,6 +163,16 @@ namespace WeWereHereVR
                 }
                 ChessLaser chessLaserInstance = rightController.AddComponent<ChessLaser>();
                 chessLaserInstance.Initialize(rightController);
+                try
+                {
+                    Haptics.TriggerHapticFeedback(XRNode.RightHand, 5f);
+                    Haptics.TriggerHapticFeedback(XRNode.LeftHand, 5f);
+                }
+                catch
+                {
+                    Debug.Log("catched");
+                }
+                
 
                 done2 = true;
             }

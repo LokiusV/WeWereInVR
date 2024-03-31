@@ -17,6 +17,8 @@ using System.IO;
 using System;
 using WeWereHereVR;
 using Valve.VR.Extras;
+using Valve.VR.InteractionSystem;
+
 
 [HarmonyPatch(typeof(MainMenuController), "Start")]
 public class MainMenuPatch
@@ -501,6 +503,108 @@ public class InfoScreenPatch : MonoBehaviour
 
     }
 }
+[HarmonyPatch(typeof(OptionController), "Start")]
+public class OptionPatch : MonoBehaviour
+{
+    [HarmonyPostfix]
+    static void Postfix(OptionController __instance)
+    {
+        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1f);
+        //disabling unneccesarry panels
+        GameObject.Find("GameOptionsButton").SetActive(false);
+        GameObject.Find("KeybindingsButton").SetActive(false);
+        Var.graphicsButton = GameObject.Find("GraphicsOptionsButton");
+        Var.audioButton = GameObject.Find("AudioOptionsButton");
+        Var.mainMenuButton = GameObject.Find("MainMenuButton");
+        Var.leaveButton = GameObject.Find("LeaveGameButton");
+        
+
+    }
+}
+[HarmonyPatch(typeof(OptionController), "GraphicsOptions")]
+public class GraphicsOptionsPatch : MonoBehaviour
+{
+    [HarmonyPostfix]
+    static void Postfix(OptionController __instance)
+    {
+        Var.audioButton.SetActive(false);
+        Var.graphicsButton.SetActive(false);
+        Var.mainMenuButton.SetActive(false);
+        Var.leaveButton.SetActive(false);
+
+
+    }
+}
+[HarmonyPatch(typeof(OptionController), "AudioOptions")]
+public class AudioOptionsPatch : MonoBehaviour
+{
+    [HarmonyPostfix]
+    static void Postfix(OptionController __instance)
+    {
+        Var.audioButton.SetActive(false);
+        Var.graphicsButton.SetActive(false);
+        Var.mainMenuButton.SetActive(false);
+        try
+        {
+            Var.leaveButton.SetActive(false);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+        Slider[] sliders = FindObjectsOfType<Slider>();
+        foreach (Slider slider in sliders)
+        {
+            if (slider.gameObject.GetComponent<BoxCollider>() == null && slider.gameObject.activeSelf)
+            {
+
+                RectTransform buttonRectTransform = slider.GetComponent<RectTransform>();
+
+
+                Vector2 buttonSize = buttonRectTransform.sizeDelta;
+
+
+                BoxCollider boxCollider = slider.gameObject.AddComponent<BoxCollider>();
+
+
+                boxCollider.size = new Vector3(buttonSize.x, buttonSize.y, 1f);
+                //boxCollider.enabled = true;
+                //boxCollider.isTrigger = true;
+            }
+            else if (slider.gameObject.GetComponent<BoxCollider>() != null && slider.gameObject.activeSelf == false)
+            {
+                slider.gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+        }
+
+
+
+    }
+}
+[HarmonyPatch(typeof(OptionController), "ClosePanel")]
+public class ClosePanelPatch : MonoBehaviour
+{
+    [HarmonyPostfix]
+    static void Postfix(OptionController __instance)
+    {
+        Var.audioButton.SetActive(true);
+        Var.graphicsButton.SetActive(true);
+        Var.mainMenuButton.SetActive(true);
+        try
+        {
+            Var.leaveButton.SetActive(true);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+
+        Var.slider = null;
+        
+
+
+    }
+}
 
 [HarmonyPatch(typeof(PlayerMovement), "FixedUpdate")]
 public class UpdatePatch
@@ -702,37 +806,14 @@ public class SteamVRSetup : BaseUnityPlugin
         //MainMenuPatch.CreateMenuController("Canvas");
         Var.Initialize();
         IngameUIWorldSpace.setScale("Canvas", 0.001f);
-        //Debug.Log("Testing haptics");
-        //TriggerHapticFeedback(XRNode.RightHand,1f);
-        //TriggerHapticFeedback(XRNode.LeftHand,1f);
+        Var.started = true;
+        
+        
 
 
     }
-    //public void TriggerHapticFeedback(XRNode hand,float length)
-    //{
-    //    Debug.Log("Here");
-    //    InputDevice device = InputDevices.GetDeviceAtXRNode(hand);
-    //    Debug.Log(device);
-    //    HapticCapabilities capabilities;
-    //    device.SendHapticImpulse(0, 0.5f, length);
-    //    if (device.TryGetHapticCapabilities(out capabilities))
-    //    {
-    //        if (capabilities.supportsImpulse)
-    //        {
-    //            Debug.Log("Haptic!");
-    //            device.SendHapticImpulse(0, 0.5f, length);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("No Haptics supported.");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Device Error.Haptics deactivated");
-    //    }
-    //}
     
+
 
 }
 

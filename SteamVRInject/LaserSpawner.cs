@@ -48,6 +48,13 @@ namespace WeWereHereVR
 
         void Update()
         {
+            //if(Input.GetKeyDown(Var.jumpButton))
+            //{
+            //    Debug.Log("pressed");
+            //    Var.debugInt++;
+            //}
+            //Debug.Log("Axis: " + Var.debugInt.ToString());
+            //Debug.Log(Input.GetAxis("joy_2_axis_"+Var.debugInt.ToString()));
             if (trackedPoseDriver != null && lineRenderer != null)
             {
                 
@@ -193,9 +200,14 @@ namespace WeWereHereVR
                             InputField hitField=parentObject.GetComponent<InputField>();
                             Toggle hitToggle= parentObject.GetComponent<Toggle>();
                             Dropdown hitDropdown = parentObject.GetComponent<Dropdown>();
+                            Slider hitSlider = parentObject.GetComponent<Slider>();
                             if (hitToggle != null)
                             {
                                 hitToggle.isOn=!hitToggle.isOn;
+                            }
+                            else if (hitSlider != null)
+                            {
+                                Var.slider=hitSlider;
                             }
                             else if (hitDropdown != null)
                             {
@@ -229,6 +241,11 @@ namespace WeWereHereVR
                             }
                         }
                     }
+                }
+                if (Var.slider!= null)
+                {
+                    Var.slider.value = Mathf.Clamp01(Var.slider.value - axisValue * Time.deltaTime);
+
                 }
 
 

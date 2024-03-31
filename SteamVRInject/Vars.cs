@@ -4,6 +4,7 @@ using BepInEx;
 using System.IO;
 using WeWereHereVR;
 using System;
+using UnityEngine.UI;
 
 namespace WeWereHereVR
 {
@@ -35,9 +36,22 @@ namespace WeWereHereVR
         public static Camera uiCamera;
         public static GameObject chessLaser;
 
+
+        public static GameObject graphicsButton;
+        public static GameObject audioButton;
+        public static GameObject mainMenuButton;
+        public static GameObject leaveButton;
+
+        public static Slider slider;
+
+        public static bool started;
+
+        public static int debugInt;
+
         //Sets up the correct bindings
         public static void Initialize()
         {
+            started = false;
             Debug.Log("Reading Controller Settings");
             string filePath = Path.Combine(Paths.PluginPath, "Settings.txt");
             
