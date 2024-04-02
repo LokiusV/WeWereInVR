@@ -80,6 +80,7 @@ namespace WeWereHereVR
                 
                 if (!held)
                 {
+
                     CollisionAction(Hand, closestObject);
                     
                 }
@@ -113,7 +114,9 @@ namespace WeWereHereVR
                         gameObject.GetComponent<HieroglyphSlabSlotView>().OnPointedAt();
                         gameObject.GetComponent<HieroglyphSlabSlotView>().OnInteraction(MakePlayer.photonViewID);
                         Var.pickup = false;
+                        lastInteractionTime = Time.time;
                     }
+
 
 
 
@@ -144,14 +147,22 @@ namespace WeWereHereVR
                     gameObject.transform.SetParent(hand.transform.parent);
                     gameObject.transform.localPosition = new Vector3(0, 0, 0);
                     gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                    InputDevice device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-                    HapticCapabilities capabilities;
-                    if (device.TryGetHapticCapabilities(out capabilities))
+                    //InputDevice device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+                    //HapticCapabilities capabilities;
+                    //if (device.TryGetHapticCapabilities(out capabilities))
+                    //{
+                    //    if (capabilities.supportsImpulse)
+                    //    {
+                    //        device.SendHapticImpulse(0, 0.5f, 0.5f);
+                    //    }
+                    //}
+                    try
                     {
-                        if (capabilities.supportsImpulse)
-                        {
-                            device.SendHapticImpulse(0, 0.5f, 0.5f);
-                        }
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
                     }
 
                 }
@@ -159,6 +170,14 @@ namespace WeWereHereVR
                 {
                     InteractableTorches torch = gameObject.GetComponent<InteractableTorches>();
                     torch.OnInteraction(MakePlayer.photonViewID);
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
                 }
                 else if (gameObject.GetComponent<GeneratorHandleController>() != null)//this the generator handle
@@ -167,6 +186,14 @@ namespace WeWereHereVR
                     {
                         GeneratorHandleController handle = gameObject.GetComponent<GeneratorHandleController>();
                         handle.OnInteraction(MakePlayer.photonViewID);
+                        try
+                        {
+                            Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                        }
+                        catch
+                        {
+                            Debug.Log("catched");
+                        }
                     }
 
                 }
@@ -174,12 +201,28 @@ namespace WeWereHereVR
                 {
                     TheaterSolutionLever lever = gameObject.GetComponent<TheaterSolutionLever>();
                     lever.OnInteraction(MakePlayer.photonViewID);
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
                 }
                 else if (gameObject.GetComponent<TheaterRedLightSwitch>() != null)//blood light switch
                 {
                     TheaterRedLightSwitch lightswitch = gameObject.GetComponent<TheaterRedLightSwitch>();
                     lightswitch.OnInteraction(MakePlayer.photonViewID);
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
                 }
                 else if (gameObject.GetComponent<TheaterHandleController>() != null)//the theater handle
@@ -213,12 +256,28 @@ namespace WeWereHereVR
                 {
                     WaterValveView valve = gameObject.GetComponent<WaterValveView>();
                     valve.OnInteraction(MakePlayer.photonViewID);
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
                 }
                 else if (gameObject.GetComponent<TheaterRecordPlayerView>() != null)//the grammophone
                 {
                     TheaterRecordPlayerView record = gameObject.GetComponent<TheaterRecordPlayerView>();
                     record.OnInteraction(MakePlayer.photonViewID);
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
                 }
                 //else if (gameObject.name == "Canvas")//the generator
@@ -263,6 +322,14 @@ namespace WeWereHereVR
                 {
                     ChandelierSwitch switcharoo = gameObject.GetComponent<ChandelierSwitch>();//cannot call it switch for obvious reasons.
                     switcharoo.OnInteraction(MakePlayer.photonViewID);
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
                 }
                 else if (gameObject.GetComponent<FilmRollPickUp>() != null)//the film roll
@@ -270,6 +337,14 @@ namespace WeWereHereVR
 
                     gameObject.GetComponent<FilmRollPickUp>().OnInteraction(MakePlayer.photonViewID);
                     Var.pickup = true;
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
 
                 }
@@ -279,6 +354,20 @@ namespace WeWereHereVR
                     {
                         gameObject.GetComponent<HieroglyphSlabPickup>().OnInteraction(MakePlayer.photonViewID);
                         Var.pickup = true;
+
+                        try
+                        {
+                            Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                        }
+                        catch
+                        {
+                            Debug.Log("catched");
+                        }
+                        lastInteractionTime = Time.time;
+                    }
+                    else
+                    {
+                        Debug.Log("Cooldown0");
                     }
                 }
                 else if (gameObject.GetComponent<ProjectorHandleController>() != null)//Chess film projector handle
@@ -288,6 +377,14 @@ namespace WeWereHereVR
                     if (handle.IsInteractable())
                     {
                         handle.OnInteraction(MakePlayer.photonViewID);
+                        try
+                        {
+                            Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                        }
+                        catch
+                        {
+                            Debug.Log("catched");
+                        }
                     }
 
                 }
@@ -303,12 +400,34 @@ namespace WeWereHereVR
 
                     DoorView door = gameObject.GetComponent<DoorView>();
                     door.OnInteraction(MakePlayer.photonViewID);
+                    try
+                    {
+                        Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                    }
+                    catch
+                    {
+                        Debug.Log("catched");
+                    }
 
                 }
                 else if (gameObject.GetComponent<MazeDoorSwitch>() != null)//different door
                 {
-                    MazeDoorSwitch switcharoo = gameObject.GetComponent<MazeDoorSwitch>();//cannot call it switch for obvious reasons.
-                    switcharoo.OnInteraction(MakePlayer.photonViewID);
+                    if (!(Time.time - lastInteractionTime < interactionCooldown))
+                    {
+                        MazeDoorSwitch switcharoo = gameObject.GetComponent<MazeDoorSwitch>();//cannot call it switch for obvious reasons.
+                        switcharoo.OnInteraction(MakePlayer.photonViewID);
+                        try
+                        {
+                            Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
+                        }
+                        catch
+                        {
+                            Debug.Log("catched");
+
+                        }
+                        lastInteractionTime = Time.time;
+
+                    }
 
                 }
 
@@ -354,16 +473,19 @@ namespace WeWereHereVR
                 {
                     if (gameObject.GetComponentInChildren<HieroglyphSlabPickup>() != null)//if tehy're not empty
                     {
-                        HieroglyphSlabPickup pickup = gameObject.GetComponentInChildren<HieroglyphSlabPickup>();
-                        if (pickup != null)//we wanna pick it back up
+                        if (!(Time.time - lastInteractionTime < interactionCooldown))
                         {
+                            HieroglyphSlabPickup pickup = gameObject.GetComponentInChildren<HieroglyphSlabPickup>();
+                            if (pickup != null)//we wanna pick it back up
+                            {
 
-                            pickup.OnInteraction(MakePlayer.photonViewID);
-                            Var.pickup = true;
-                            lastInteractionTime = Time.time;//cooldown so it doesn't immediately snap back into the slot
+                                pickup.OnInteraction(MakePlayer.photonViewID);
+                                Var.pickup = true;
+                                lastInteractionTime = Time.time;//cooldown so it doesn't immediately snap back into the slot
 
 
 
+                            }
                         }
                     }
 
@@ -411,14 +533,7 @@ namespace WeWereHereVR
                     //        break;
                     //}
                 }
-            try
-            {
-                Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
-            }
-            catch
-            {
-                Debug.Log("catched");
-            }
+            
         }
         
         public static GameObject CheckCollisionWithIndex(GameObject Hand)

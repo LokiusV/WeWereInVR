@@ -193,6 +193,7 @@ namespace WeWereHereVR
                 {
                     Var.rightHand.GetComponent<PlayerRightHand>().ClearHand();
                     Var.pickup = false;
+                    done = true;
                 }
 
             }

@@ -116,21 +116,21 @@ namespace WeWereHereVR
                 //GameObject laserPointer = GameObject.Find("LaserPointer");
                 //laserPointer.SetActive(false);
 
-                BoxCollider whiteLever = GameObject.Find("WhiteLever").GetComponentInChildren<BoxCollider>();
-                whiteLever.isTrigger = true;
-                whiteLever.size = new Vector3(2, 2, 2);
-                BoxCollider blueLever = GameObject.Find("Blue Lever").GetComponentInChildren<BoxCollider>();
-                blueLever.isTrigger = true;
-                blueLever.size = new Vector3(2, 2, 2);
-                BoxCollider redLever = GameObject.Find("Red Lever").GetComponentInChildren<BoxCollider>();
-                redLever.isTrigger = true;
-                redLever.size = new Vector3(2, 2, 2);
-                BoxCollider greenLever = GameObject.Find("Green Lever").GetComponentInChildren<BoxCollider>();
-                greenLever.isTrigger = true;
-                greenLever.size = new Vector3(2, 2, 2);
-                BoxCollider MapLever = GameObject.Find("MapLever").GetComponentInChildren<BoxCollider>();
-                MapLever.isTrigger = true;
-                MapLever.size = new Vector3(2, 2, 2);
+                //BoxCollider whiteLever = GameObject.Find("WhiteLever").GetComponentInChildren<BoxCollider>();
+                //whiteLever.isTrigger = true;
+                //whiteLever.size = new Vector3(2, 2, 2);
+                //BoxCollider blueLever = GameObject.Find("Blue Lever").GetComponentInChildren<BoxCollider>();
+                //blueLever.isTrigger = true;
+                //blueLever.size = new Vector3(2, 2, 2);
+                //BoxCollider redLever = GameObject.Find("Red Lever").GetComponentInChildren<BoxCollider>();
+                //redLever.isTrigger = true;
+                //redLever.size = new Vector3(2, 2, 2);
+                //BoxCollider greenLever = GameObject.Find("Green Lever").GetComponentInChildren<BoxCollider>();
+                //greenLever.isTrigger = true;
+                //greenLever.size = new Vector3(2, 2, 2);
+                //BoxCollider MapLever = GameObject.Find("MapLever").GetComponentInChildren<BoxCollider>();
+                //MapLever.isTrigger = true;
+                //MapLever.size = new Vector3(2, 2, 2);
 
                 //DoorView stageDoor1 = GameObject.Find("TheaterRoom").GetComponentInChildren<DoorView>();
                 //BoxCollider stageDoor1Collider = stageDoor1.gameObject.GetComponent<BoxCollider>();
@@ -140,6 +140,7 @@ namespace WeWereHereVR
                 ////barometer.isTrigger = true;
                 //generator.isTrigger = true;
                 //generator.size = new Vector3(10f, 10f, 10f);
+                MazeDoorSwitch[]mazeDoorSwitches = GameObject.FindObjectsOfType<MazeDoorSwitch>();
                 BoxCollider generator = GameObject.Find("Canvas").GetComponent<BoxCollider>();
                 //barometer.isTrigger = true;
                 generator.isTrigger = true;
@@ -150,15 +151,46 @@ namespace WeWereHereVR
                 GameObject controlBoard = GameObject.Find("ControlBoard");
 
                 //This attaches box colliders to the Theater Handles to make interactions with the players hand possible. Same logic as with the UIButtons
-                TheaterHandleController[] handles = GameObject.FindObjectsOfType<TheaterHandleController>();
-                foreach (TheaterHandleController handle in handles)
+                //this is deprecated. A new way to interact with the theater handles has been introduced in 0.3.1
+                //TheaterHandleController[] handles = GameObject.FindObjectsOfType<TheaterHandleController>();
+                //foreach (TheaterHandleController handle in handles)
+                //{
+                //    if (handle.gameObject.GetComponent<BoxCollider>() == null)
+                //    {
+                //        BoxCollider boxCollider = handle.gameObject.AddComponent<BoxCollider>();
+                //        boxCollider.size = new Vector3(1f, 1f, 1f);
+                //        boxCollider.isTrigger = true;
+                //    }
+
+                //}
+                DoorView[] doors = GameObject.FindObjectsOfType<DoorView>();
+                foreach (DoorView door in doors)
                 {
-                    if (handle.gameObject.GetComponent<BoxCollider>() == null)
-                    {
-                        BoxCollider boxCollider = handle.gameObject.AddComponent<BoxCollider>();
-                        boxCollider.size = new Vector3(1f, 1f, 1f);
+                    
+                        BoxCollider boxCollider = door.gameObject.AddComponent<BoxCollider>();
+                        boxCollider.size = new Vector3(4, 6, 4);
                         boxCollider.isTrigger = true;
-                    }
+                    
+
+                }
+                foreach (MazeDoorSwitch mazeDoorSwitch in mazeDoorSwitches)
+                {
+
+                    BoxCollider boxCollider = mazeDoorSwitch.gameObject.AddComponent<BoxCollider>();
+                    boxCollider.size = new Vector3(4, 4, 4);
+                    boxCollider.isTrigger = true;
+
+
+                }
+                TrapDoorView[] trapDoors = GameObject.FindObjectsOfType<TrapDoorView>();
+                foreach (TrapDoorView trapDoor in trapDoors)
+                {
+                    //we don't ccheck if it already has a box collider attached to it, because it definetely has. we still want to add another one.
+                        BoxCollider boxCollider = trapDoor.gameObject.AddComponent<BoxCollider>();
+                        boxCollider.size = new Vector3(3, 3, 3);
+                        boxCollider.center=new Vector3(0,2,0);
+                        boxCollider.isTrigger = true;
+                    
 
                 }
                 ChessLaser chessLaserInstance = rightController.AddComponent<ChessLaser>();
