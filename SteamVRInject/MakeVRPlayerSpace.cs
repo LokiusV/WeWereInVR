@@ -60,6 +60,7 @@ namespace WeWereHereVR
             {
                 GameObject eg = new GameObject("eg");
                 Transform parent = Camera.main.transform.parent;
+                Var.playerGameObject = parent.gameObject;
                 eg.transform.SetParent(parent);
                 float realisticHeightOffset = Camera.main.transform.localPosition.y + (characterController.height / 2f);
                 Debug.Log(realisticHeightOffset);

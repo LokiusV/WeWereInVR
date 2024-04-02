@@ -120,12 +120,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChessLaser.cs" />
+    <Compile Include="Haptics.cs" />
+    <Compile Include="KeyboardController.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="LaserSpawner.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="HandCreatorSpace.cs" />
     <Compile Include="HandPose.cs" />
     <Compile Include="CollisionChecker.cs" />
+    <Compile Include="SnapTurnProvider.cs" />
+    <Compile Include="TriggerProvider.cs" />
     <Compile Include="Vars.cs" />
     <Compile Include="ObjectClonerSpace.cs" />
     <Compile Include="WorldSpacer2.cs" />

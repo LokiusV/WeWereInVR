@@ -50,6 +50,8 @@ namespace WeWereHereVR
 
         public static bool triggerDone;
 
+        public static GameObject playerGameObject;
+
         //Sets up the correct bindings
         public static void Initialize()
         {
