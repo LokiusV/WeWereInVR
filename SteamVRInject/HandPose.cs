@@ -170,7 +170,7 @@ namespace WeWereHereVR
                 closedHand.SetActive(false);
                 normalHand.SetActive(true);
 
-                if (Input.GetKeyDown(Var.acceptButton))
+                if (Input.GetKeyDown(Var.acceptButton) || TriggerProvider.CheckPressed() == true)
                 {
                     BarometerView barometerView = GameObject.Find("generator").GetComponentInChildren<BarometerView>();
                     var barometerMethod = AccessTools.Method(typeof(BarometerView), "OnSkillShot");

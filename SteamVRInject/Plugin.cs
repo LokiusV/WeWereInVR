@@ -770,7 +770,7 @@ public class WalkieTalkieDestroyPatch
 
 }
 
-[BepInPlugin("com.Lokius.WeWereInVR", "WeWereInVR", "0.3.1")]
+[BepInPlugin("com.Lokius.WeWereInVR", "WeWereInVR", "1.0.0")]
 public class SteamVRSetup : BaseUnityPlugin
 {
     void Awake()

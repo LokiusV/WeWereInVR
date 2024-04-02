@@ -48,13 +48,17 @@ namespace WeWereHereVR
 
         void Update()
         {
-            //if(Input.GetKeyDown(Var.jumpButton))
+            //joy_1_axis_2: trigger
+            //joy_1_axis_3: horizontal or vertical
+            //joy_1_axis_4: horizontal or vertical
+            //if (Input.GetKeyDown(Var.jumpButton))
             //{
             //    Debug.Log("pressed");
             //    Var.debugInt++;
             //}
             //Debug.Log("Axis: " + Var.debugInt.ToString());
-            //Debug.Log(Input.GetAxis("joy_2_axis_"+Var.debugInt.ToString()));
+            //Debug.Log(Input.GetAxis("joy_1_axis_" + Var.debugInt.ToString()));
+            //Debug.Log(TriggerProvider.CheckPressed());
             if (trackedPoseDriver != null && lineRenderer != null)
             {
                 
@@ -193,7 +197,7 @@ namespace WeWereHereVR
                     if (collider != null) 
                     {
                         
-                        if (Input.GetKeyDown(Var.acceptButton))
+                        if (Input.GetKeyDown(Var.acceptButton)||TriggerProvider.CheckPressed())
                         {
                             GameObject parentObject = collider.gameObject;
                             Button hitButton = parentObject.GetComponent<Button>();

@@ -48,6 +48,8 @@ namespace WeWereHereVR
 
         public static int debugInt;
 
+        public static bool triggerDone;
+
         //Sets up the correct bindings
         public static void Initialize()
         {

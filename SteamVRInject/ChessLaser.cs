@@ -62,7 +62,7 @@ namespace WeWereHereVR
             lineRenderer.SetPosition(1, lineEnd);
             
             RaycastHit[] hits = Physics.RaycastAll(lineStart, laserObject.transform.forward, 10f);
-            if (Input.GetKeyDown(Var.acceptButton))
+            if (Input.GetKeyDown(Var.acceptButton)||TriggerProvider.CheckPressed()==true)
             {
 
 
