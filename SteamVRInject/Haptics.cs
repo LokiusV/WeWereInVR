@@ -18,7 +18,7 @@ namespace WeWereHereVR
             
             InputDevice device = InputDevices.GetDeviceAtXRNode(hand);
             
-            HapticCapabilities capabilities;
+            //HapticCapabilities capabilities;
             try
             {
                 device.SendHapticImpulse(0, 0.5f, length);

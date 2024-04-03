@@ -47,21 +47,29 @@ namespace WeWereHereVR
         }
         public static void Snap()
         {
-            if(SnapRight())
+            if (SnapRight())
             {
-                try
+                if (!(Time.time - Var.lastSnapTime < Var.snapCooldown))
                 {
-                    Var.playerGameObject.transform.Rotate(0, 45, 0);
+                    try
+                    {
+                        Var.playerGameObject.transform.Rotate(0, 45, 0);
+                        Var.lastSnapTime = Time.time;
+                    }
+                    catch (Exception e) { Debug.LogException(e); }
                 }
-                catch (Exception e) { Debug.LogException(e); }
             }
             if (SnapLeft())
             {
-                try
+                if (!(Time.time - Var.lastSnapTime < Var.snapCooldown))
                 {
-                    Var.playerGameObject.transform.Rotate(0, -45, 0);
+                    try
+                    {
+                        Var.playerGameObject.transform.Rotate(0, -45, 0);
+                        Var.lastSnapTime = Time.time;
+                    }
+                    catch (Exception e) { Debug.LogException(e); }
                 }
-                catch (Exception e) { Debug.LogException(e); }
             }
 
         }

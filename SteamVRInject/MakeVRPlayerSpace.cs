@@ -183,15 +183,16 @@ namespace WeWereHereVR
 
 
                 }
+                //overlaps with handles. fix asap! Just only create them once the puzzle is completed!
                 TrapDoorView[] trapDoors = GameObject.FindObjectsOfType<TrapDoorView>();
                 foreach (TrapDoorView trapDoor in trapDoors)
                 {
                     //we don't ccheck if it already has a box collider attached to it, because it definetely has. we still want to add another one.
-                        BoxCollider boxCollider = trapDoor.gameObject.AddComponent<BoxCollider>();
-                        boxCollider.size = new Vector3(3, 3, 3);
-                        boxCollider.center=new Vector3(0,2,0);
-                        boxCollider.isTrigger = true;
-                    
+                    BoxCollider boxCollider = trapDoor.gameObject.AddComponent<BoxCollider>();
+                    boxCollider.size = new Vector3(3, 3, 3);
+                    boxCollider.center = new Vector3(0, 2, 0);
+                    boxCollider.isTrigger = true;
+
 
                 }
                 ChessLaser chessLaserInstance = rightController.AddComponent<ChessLaser>();

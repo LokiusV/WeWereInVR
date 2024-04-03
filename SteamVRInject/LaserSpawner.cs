@@ -49,8 +49,8 @@ namespace WeWereHereVR
         void Update()
         {
             //joy_1_axis_2: trigger
-            //joy_1_axis_3: horizontal or vertical
-            //joy_1_axis_4: horizontal or vertical
+            //joy_1_axis_3: horizontal
+            //joy_1_axis_4: vertical
             //if (Input.GetKeyDown(Var.jumpButton))
             //{
             //    Debug.Log("pressed");
@@ -59,6 +59,9 @@ namespace WeWereHereVR
             //Debug.Log("Axis: " + Var.debugInt.ToString());
             //Debug.Log(Input.GetAxis("joy_1_axis_" + Var.debugInt.ToString()));
             //Debug.Log(TriggerProvider.CheckPressed());
+            //Debug.Log(Input.GetAxis("joy_1_axis_3"));
+            //Debug.Log("Left: "+SnapTurnProvider.SnapLeft());
+            //Debug.Log("Right: "+SnapTurnProvider.SnapRight());
             if (trackedPoseDriver != null && lineRenderer != null)
             {
                 

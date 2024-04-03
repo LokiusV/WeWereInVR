@@ -14,7 +14,7 @@ namespace WeWereHereVR
             }
             catch (Exception exception)//if we get an error, it's probably because the file just doesn't exist
             {
-                return "Whoopsie, file not found. You done fucked up lmao";
+                return "Whoopsie, file not found/read error. You done fucked up lmao";
 
             }
 

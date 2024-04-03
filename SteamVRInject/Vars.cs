@@ -49,6 +49,9 @@ namespace WeWereHereVR
         public static int debugInt;
 
         public static bool triggerDone;
+        public static bool snapDone;
+        public static float lastSnapTime;
+        public static float snapCooldown = 0.45f;
 
         public static GameObject playerGameObject;
 

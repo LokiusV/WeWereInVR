@@ -362,6 +362,26 @@ public class BarometerEndPatch : MonoBehaviour
         Var.barometerActive = false;
     }
 }
+//[HarmonyPatch(typeof(TrapDoorView),"OnTrapDoorUnlocked")]
+//public class TrapDoorHitboxPatch : MonoBehaviour
+//{
+//    [HarmonyPostfix]
+//    static void Postfix(TrapDoorView __instance, object[] arg0)
+//    {
+//        Debug.Log("TrapDoor fixex");
+//        TrapDoorView[] trapDoors = GameObject.FindObjectsOfType<TrapDoorView>();
+//        foreach (TrapDoorView trapDoor in trapDoors)
+//        {
+//            //we don't ccheck if it already has a box collider attached to it, because it definetely has. we still want to add another one.
+//            BoxCollider boxCollider = trapDoor.gameObject.AddComponent<BoxCollider>();
+//            boxCollider.size = new Vector3(3, 3, 3);
+//            boxCollider.center = new Vector3(0, 2, 0);
+//            boxCollider.isTrigger = true;
+
+
+//        }
+//    }
+//}
 
 
 [HarmonyPatch(typeof(PlayerMovement), "TogglePlayerControls")]
@@ -625,6 +645,7 @@ public class UpdatePatch
 
 
         }
+        
 
 
 
@@ -633,6 +654,7 @@ public class UpdatePatch
             MakePlayer.characterControllerInstance.center = new Vector3(Camera.main.transform.localPosition.x, MakePlayer.characterControllerInstance.center.y, Camera.main.transform.localPosition.z);
             HandPose.UpdateHeldKeys();
             HandPose.CheckKeyCombinations();
+            SnapTurnProvider.Snap();
         }
         else
         {
