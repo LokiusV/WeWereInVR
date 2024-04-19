@@ -17,7 +17,7 @@
 	       -AssetTools 2.X.X
 	       -BepInEx 5.4
 	       -We Were Here
-	       -Unity Version 2018.4.12f1 or alternatively only the correct openvr_api.dll (located in GameFolderFiles
+	       -Unity Version 2018.4.12f1 or alternatively only the correct openvr_api.dll (located in GameFolderFiles)
  
 ## How To build the project:			
 # IMPORTANT: If you just want to play the mod, please just go to releases and install the latest release. Building it is only necessary, if you want to modify it!
