@@ -148,8 +148,6 @@ namespace WeWereHereVR
 
 
                         boxCollider.size = new Vector3(toggleSize.x, toggleSize.y, 1f);
-                        //boxCollider.enabled = true;
-                        //boxCollider.isTrigger = true;
                     }
                     else if (toggle.gameObject.GetComponent<BoxCollider>() != null && gameObject.activeSelf == false)
                     {
@@ -171,15 +169,12 @@ namespace WeWereHereVR
 
 
                         boxCollider.size = new Vector3(buttonSize.x, buttonSize.y, 1f);
-                        //boxCollider.enabled = true;
-                        //boxCollider.isTrigger = true;
                     }
                     else if (dropdown.gameObject.GetComponent<BoxCollider>() != null && gameObject.activeSelf == false)
                     {
                         dropdown.gameObject.GetComponent<BoxCollider>().enabled = false;
                     }
                 }
-                //Debug.Log(Input.GetAxis("joy_0_axis_1"));
                 
                 float axisValue = Input.GetAxis("joy_0_axis_1");
 
@@ -188,7 +183,6 @@ namespace WeWereHereVR
                     foreach (Scrollbar slider in sliders)
                     {
                         slider.value = Mathf.Clamp01(slider.value -axisValue * Time.deltaTime);
-                        //Debug.Log(slider.value);
                         
                     }
                 }
