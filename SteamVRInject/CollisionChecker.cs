@@ -26,19 +26,12 @@ namespace WeWereHereVR
         // Start is called before the first frame update
         public static GameObject CheckCollisionWithSphere(GameObject Hand)
         {
-            //Debug.Log("Started");
+            
 
             Collider parentCollider = Hand.GetComponentInParent<SphereCollider>();
-            //Debug.Log(parentCollider);
-
-            //badBoyList.Add(Hand.transform.parent.gameObject);
-            //badBoyList.Add(GameObject.Find())
+            
             Collider[] colliders = Physics.OverlapSphere(parentCollider.transform.position, parentCollider.bounds.extents.magnitude);
-            //if (!first)
-            //{             //Debug.Log(Hand.transform.parent.parent.parent);
-            //    Initiate("asd");
-            //}
-            //Debug.Log(badBoyList.Count);
+            
             if (colliders.Length > 0)
             {
                 GameObject closestObject = colliders[0].gameObject;
@@ -99,7 +92,7 @@ namespace WeWereHereVR
             if (Var.pickup)
             {
                 
-                //Debug.Log("Snap");
+                
                 //we identify it
                 if (gameObject.GetComponent<FilmRollSlotView>() != null)//and snap it to the correct socket
                 {
@@ -147,15 +140,7 @@ namespace WeWereHereVR
                     gameObject.transform.SetParent(hand.transform.parent);
                     gameObject.transform.localPosition = new Vector3(0, 0, 0);
                     gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                    //InputDevice device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-                    //HapticCapabilities capabilities;
-                    //if (device.TryGetHapticCapabilities(out capabilities))
-                    //{
-                    //    if (capabilities.supportsImpulse)
-                    //    {
-                    //        device.SendHapticImpulse(0, 0.5f, 0.5f);
-                    //    }
-                    //}
+                    
                     try
                     {
                         Haptics.TriggerHapticFeedback(XRNode.RightHand, 1.5f);
@@ -245,13 +230,6 @@ namespace WeWereHereVR
                     
 
                 }
-                //else if (gameObject.GetComponent<TheaterControlPanelView>() != null)
-                //{
-                //    Var.isInspecting = true;
-                //    Var.inspectedObject = gameObject;
-                //    var lockMethod = AccessTools.Method(typeof(TheaterControlPanelView), "LockAtPosition");
-                //    lockMethod.Invoke(gameObject.GetComponent<TheaterControlPanelView>(), new object[] { });
-                //}
                 else if (gameObject.GetComponent<WaterValveView>() != null)//the valves
                 {
                     WaterValveView valve = gameObject.GetComponent<WaterValveView>();
@@ -280,25 +258,7 @@ namespace WeWereHereVR
                     }
 
                 }
-                //else if (gameObject.name == "Canvas")//the generator
-                //{
-                //    if (!Var.barometerSolved)//if we didn't solve the barometer puzzle yet
-                //    {
-                //        //Debug.Log("Activated Barometer");
-                //        ActivateBarometer(GameObject.Find("generator").GetComponentInChildren<BarometerController>().gameObject);//we activate it.
-                //    }
-                //    else//otherwise we just activate the generator
-                //    {
-                //        FieldInfo isInteractableField = AccessTools.Field(typeof(GeneratorHandleController), "isInteractable");
-                //        bool isInteractable = (bool)isInteractableField.GetValue(gameObject.GetComponentInChildren<GeneratorHandleController>());
-                //        if (isInteractable)
-                //        {
-                //            gameObject.GetComponentInChildren<GeneratorHandleController>().OnInteraction(MakePlayer.photonViewID);
-                //        }
-                //    }
 
-
-                //}
                 else if (gameObject.GetComponent<BarometerView>())//the generator
                 {
                     if (!Var.barometerSolved)//if we didn't solve the barometer puzzle yet
@@ -306,15 +266,7 @@ namespace WeWereHereVR
                         //Debug.Log("Activated Barometer");
                         ActivateBarometer(GameObject.Find("generator").GetComponentInChildren<BarometerController>().gameObject);//we activate it.
                     }
-                    //else//otherwise we just activate the generator
-                    //{
-                    //    FieldInfo isInteractableField = AccessTools.Field(typeof(GeneratorHandleController), "isInteractable");
-                    //    bool isInteractable = (bool)isInteractableField.GetValue(gameObject.GetComponentInChildren<GeneratorHandleController>());
-                    //    if (isInteractable)
-                    //    {
-                    //        gameObject.GetComponentInChildren<GeneratorHandleController>().OnInteraction(MakePlayer.photonViewID);
-                    //    }
-                    //}
+
 
 
                 }
@@ -538,19 +490,11 @@ namespace WeWereHereVR
         
         public static GameObject CheckCollisionWithIndex(GameObject Hand)
         {
-            //Debug.Log("Started");
 
             Collider parentCollider = Hand.GetComponentInChildren<SphereCollider>();
-            //Debug.Log(parentCollider);
-
-            //badBoyList.Add(Hand.transform.parent.gameObject);
-            //badBoyList.Add(GameObject.Find())
+            
             Collider[] colliders = Physics.OverlapSphere(parentCollider.transform.position, parentCollider.bounds.extents.magnitude);
-            //if (!first)
-            //{             //Debug.Log(Hand.transform.parent.parent.parent);
-            //    Initiate("asd");
-            //}
-            //Debug.Log(badBoyList.Count);
+
             if (colliders.Length > 0)
             {
                 GameObject closestObject = colliders[0].gameObject;
@@ -617,7 +561,6 @@ namespace WeWereHereVR
 
             foreach (Transform child in children)
             {
-                //Debug.Log(child.gameObject);
 
                 badBoyList.Add(child.gameObject);
                 first = true;
@@ -626,7 +569,6 @@ namespace WeWereHereVR
         }
         public static void ActivateBarometer(GameObject gameObject)
         {
-            //BarometerController barometer = gameObject.GetComponent<BarometerController>();
             BarometerController barometer = GameObject.Find("Barometer").GetComponent<BarometerController>();
             var startBarometer = AccessTools.Method(typeof(BarometerController), "ToggleMiniGame");
             startBarometer.Invoke(barometer, new object[] { new object[] { } });
