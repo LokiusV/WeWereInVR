@@ -45,7 +45,6 @@ namespace WeWereHereVR
             heldKeys = currentKeys;
         }
 
-        // Use this for initialization
         public static void CheckKeyCombinations()
         {
             if (!Var.pickup && (!Var.barometerActive))
@@ -71,9 +70,6 @@ namespace WeWereHereVR
                             normalHand.SetActive(false);
 
                         }
-                        //indexHand.SetActive(false);
-                        //closedHand.SetActive(true);
-                        //normalHand.SetActive(false);
                         done = true;
 
                     }
@@ -87,10 +83,6 @@ namespace WeWereHereVR
                         CollisionChecker.heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                     }
-                    //else
-                    //{
-                    //    return;
-                    //}
 
                 }
                 else if (heldKeys.Contains(Var.gripButton) && !(heldKeys.Contains(Var.indexButton)))
@@ -113,9 +105,6 @@ namespace WeWereHereVR
                             normalHand.SetActive(false);
 
                         }
-                        //indexHand.SetActive(true);
-                        //closedHand.SetActive(false);
-                        //normalHand.SetActive(false);
 
 
 
@@ -130,12 +119,6 @@ namespace WeWereHereVR
                         CollisionChecker.heldObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                     }
-                    //else if (heldKeys.Contains(KeyCode.JoystickButton0) && !CollisionChecker.held&&Var.isInspecting)
-                    //{
-                    //    var unlockMethod = AccessTools.Method(typeof(TheaterControlPanelView), "UnlockFromPosition");
-                    //    unlockMethod.Invoke(Var.inspectedObject.GetComponent<TheaterControlPanelView>(), new object[] {  });
-                    //    Var.isInspecting = false;
-                    //    Var.inspectedObject = null;
 
                     //}
                     if (!CollisionChecker.held)
