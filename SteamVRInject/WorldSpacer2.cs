@@ -22,7 +22,6 @@ namespace WeWereHereVR
         public static void setScale(string canvasString,float amount)
         {
             GameObject canvaObject = GameObject.Find(canvasString);
-            //canvaObject.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
             canvaObject.transform.localScale = new Vector3(amount, amount, amount);
             if (Var.started)
             {
