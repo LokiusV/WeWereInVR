@@ -42,20 +42,6 @@ namespace WeWereHereVR
             characterController.center = new Vector3(0, 0, 0);
             characterControllerInstance = characterController;
 
-            //GameObject eg = new GameObject();
-            //Transform parent = Camera.main.transform.parent;
-            //eg.transform.SetParent(parent);
-            //Camera.main.transform.SetParent(eg.transform);
-            //float realisticHeightOffset = normalHeightValue - (characterController.height / 2f) - parent.position.y;
-            //if (parent.position.y <= 0)
-            //{
-            //    eg.transform.localPosition = new Vector3(0, realisticHeightOffset, 0);
-            //}
-            //else
-            //{
-            //    eg.transform.localPosition = new Vector3(0, -realisticHeightOffset, 0);
-
-            //}
             if (GameObject.Find("eg") == null)
             {
                 GameObject eg = new GameObject("eg");
@@ -85,12 +71,12 @@ namespace WeWereHereVR
                 //walkieTalkie.OnInteraction(eg.transform.parent.GetComponent<PhotonView>().ownerId);
 
                 leftController.transform.position = new Vector3(0, 0, 0);
-                //leftController.transform.rotation = new Quaternion(0, 0, 0,0);
+
                 leftController.transform.localPosition = new Vector3(0, 0, 0);
                 GameObject og = new GameObject("offset");
                 og.transform.SetParent(eg.transform);
                 og.transform.localPosition = new Vector3(-0.0046f, 1.7019f, 0.2056f);
-                //leftController.transform.localScale = new Vector3(-0.12f, 0.12f, 0.12f);
+
 
                 TrackedPoseDriver trackedPoseDriver = leftController.AddComponent<TrackedPoseDriver>();
                 trackedPoseDriver.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
@@ -101,7 +87,7 @@ namespace WeWereHereVR
                 leftController.transform.localPosition = new Vector3(-leftController.transform.localPosition.x, leftController.transform.localPosition.y, leftController.transform.localPosition.z);
 
                 hc =eg.AddComponent<HandCreator>();
-                //HandCreator hc = eg.AddComponent<HandCreator>();
+
                 hc.CreateHand();
                 GameObject rightController = GameObject.Find("Right Controller");
                 rightController.transform.SetParent(og.transform);
@@ -114,56 +100,18 @@ namespace WeWereHereVR
                 rightController.transform.GetChild(1).gameObject.transform.localPosition = new Vector3(0, 0, 0);
                 rightController.transform.GetChild(1).gameObject.transform.localRotation = Quaternion.Euler(0,0,0);
                 Var.rightHand = rightController.transform.GetChild(1).gameObject;
-                //GameObject laserPointer = GameObject.Find("LaserPointer");
-                //laserPointer.SetActive(false);
 
-                //BoxCollider whiteLever = GameObject.Find("WhiteLever").GetComponentInChildren<BoxCollider>();
-                //whiteLever.isTrigger = true;
-                //whiteLever.size = new Vector3(2, 2, 2);
-                //BoxCollider blueLever = GameObject.Find("Blue Lever").GetComponentInChildren<BoxCollider>();
-                //blueLever.isTrigger = true;
-                //blueLever.size = new Vector3(2, 2, 2);
-                //BoxCollider redLever = GameObject.Find("Red Lever").GetComponentInChildren<BoxCollider>();
-                //redLever.isTrigger = true;
-                //redLever.size = new Vector3(2, 2, 2);
-                //BoxCollider greenLever = GameObject.Find("Green Lever").GetComponentInChildren<BoxCollider>();
-                //greenLever.isTrigger = true;
-                //greenLever.size = new Vector3(2, 2, 2);
-                //BoxCollider MapLever = GameObject.Find("MapLever").GetComponentInChildren<BoxCollider>();
-                //MapLever.isTrigger = true;
-                //MapLever.size = new Vector3(2, 2, 2);
-
-                //DoorView stageDoor1 = GameObject.Find("TheaterRoom").GetComponentInChildren<DoorView>();
-                //BoxCollider stageDoor1Collider = stageDoor1.gameObject.GetComponent<BoxCollider>();
-
-                //BoxCollider barometer = GameObject.Find("Barometer").AddComponent<BoxCollider>();
-                //BoxCollider generator = GameObject.Find("generator").GetComponent<BoxCollider>();
-                ////barometer.isTrigger = true;
-                //generator.isTrigger = true;
-                //generator.size = new Vector3(10f, 10f, 10f);
                 MazeDoorSwitch[]mazeDoorSwitches = GameObject.FindObjectsOfType<MazeDoorSwitch>();
                 BoxCollider generator = GameObject.Find("Canvas").GetComponent<BoxCollider>();
                 //barometer.isTrigger = true;
                 generator.isTrigger = true;
                 generator.size = new Vector3(2f, 2f, 2f);
 
-                //barometer.size = new Vector3(1.5f, 1.5f, 1.5f);
+
                 characterController.radius = 0.2f;
                 GameObject controlBoard = GameObject.Find("ControlBoard");
 
-                //This attaches box colliders to the Theater Handles to make interactions with the players hand possible. Same logic as with the UIButtons
-                //this is deprecated. A new way to interact with the theater handles has been introduced in 0.3.1
-                //TheaterHandleController[] handles = GameObject.FindObjectsOfType<TheaterHandleController>();
-                //foreach (TheaterHandleController handle in handles)
-                //{
-                //    if (handle.gameObject.GetComponent<BoxCollider>() == null)
-                //    {
-                //        BoxCollider boxCollider = handle.gameObject.AddComponent<BoxCollider>();
-                //        boxCollider.size = new Vector3(1f, 1f, 1f);
-                //        boxCollider.isTrigger = true;
-                //    }
 
-                //}
                 DoorView[] doors = GameObject.FindObjectsOfType<DoorView>();
                 foreach (DoorView door in doors)
                 {
