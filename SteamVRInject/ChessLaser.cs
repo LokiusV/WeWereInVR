@@ -17,7 +17,6 @@ namespace WeWereHereVR
         private GameObject rightC;
         public void Initialize(GameObject rightController)
         {
-            //create all the new gameObjects
             laserObject = new GameObject("ChessLaser");
             Var.chessLaser = laserObject;
 
@@ -36,26 +35,11 @@ namespace WeWereHereVR
             lineRenderer.material = newMaterial;
             laserObject.transform.SetParent(rightController.transform);
 
-            //TrackedPoseDriver trackedPoseDriver = laserObject.AddComponent<TrackedPoseDriver>();
-            //trackedPoseDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRController, TrackedPoseDriver.TrackedPose.RightPose);
-            //trackedPoseDriver=rightController.GetComponent<TrackedPoseDriver>();
-            //rightC = rightController;
             laserObject.SetActive(false);
         }
         public void Update()
         {
             
-            //Vector3 controllerPosition = trackedPoseDriver.transform.localPosition;
-            //Quaternion controllerRotation = trackedPoseDriver.transform.localRotation;
-
-
-            //trackedPoseDriver.transform.localPosition = controllerPosition;
-            //trackedPoseDriver.transform.localRotation = controllerRotation;
-
-
-
-            //Vector3 lineStart = trackedPoseDriver.transform.position;
-            //Vector3 lineEnd = trackedPoseDriver.transform.position + trackedPoseDriver.transform.forward * 10f;
             Vector3 lineStart = laserObject.transform.position;
             Vector3 lineEnd = laserObject.transform.position + laserObject.transform.forward * 10f;
             lineRenderer.SetPosition(0, lineStart);
