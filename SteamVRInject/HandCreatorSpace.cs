@@ -63,9 +63,6 @@ namespace WeWereHereVR
             sphereCollider.radius = 0.35f;
             sphereCollider.isTrigger = true;
 
-            //closedHandInstance.SetActive(false);
-            //indexHandInstance.SetActive(false);
-            //openHandInstance.SetActive(true);
             HandPose.Initialize(indexHandInstance, openHandInstance, closedHandInstance);
 
             assetBundle.Unload(false);
