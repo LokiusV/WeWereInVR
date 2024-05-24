@@ -81,16 +81,6 @@ public class IngameUIPatch
         Debug.Log("Video Start");
 
 
-        //Camera mainCamera = Camera.main;
-        //Var.mainCamera = mainCamera;
-
-        
-        //Camera uiCamera = new GameObject("UICamera").AddComponent<Camera>();//1
-        //Var.uiCamera = uiCamera;
-
-        //uiCamera.transform.parent = Camera.main.transform.parent;//2
-        //mainCamera.enabled = false;
-        //uiCamera.enabled = true;
 
 
         MainMenuPatch.CreateMenuController("IngameUI");
@@ -279,22 +269,7 @@ class PasswordPatch : MonoBehaviour
         MatchmakingController matchmakingController = FindObjectOfType<MatchmakingController>();
         if (matchmakingController != null)
         {
-            //FieldInfo lobbyPanelField = AccessTools.Field(typeof(MatchmakingController), "lobbyPanel");
-            //GameObject lobbyPanel = (GameObject)lobbyPanelField.GetValue(matchmakingController);
-
-            //if (lobbyPanel != null)
-            //{
-
-            //    if (roomCreationStatus)
-            //    {
-            //        lobbyPanel.SetActive(value: false);
-            //    }
-            //}
-            //else
-            //{
-            //    Debug.LogError(".");//necessary because when brute forcing a load to this scene, this sometimes happens
-            //}
-            //GameObject.Find("ServerBrowser").SetActive(false);
+            
             Button[] buttons = GameObject.Find("ServerBrowser").GetComponentsInChildren<Button>();
             foreach (Button button in buttons)
             {
@@ -320,9 +295,6 @@ public class MousePatch:MonoBehaviour
         GameObject clonedObject = GameObject.Find("VRalkieTalkie");
         MakePlayer.characterControllerInstance.center = new Vector3(0, 0, 0);
         
-        //MainMenuPatch.CreateMenuController("ingameUI");
-
-        //Destroy(clonedObject.GetComponent<WalkieTalkie>());//we don't need(or even want) this
 
 
 
@@ -341,17 +313,7 @@ public class BarometerPatch : MonoBehaviour
         Var.barometerView = __instance;
     }
 }
-//[HarmonyPatch(typeof(GeneratorController), "OnGeneratorCrankUsed")]
-//public class ChessLaserPatch : MonoBehaviour
-//{
-//    [HarmonyPostfix]
-//    static void Postfix(GeneratorController __instance, object[] arg0)
-//    {
-//        ChessLaser chessLaserInstance = new ChessLaser();
-//        chessLaserInstance.Initialize();
 
-//    }
-//}
 [HarmonyPatch(typeof(BarometerView), "OnBarometerSolved")]
 public class BarometerEndPatch : MonoBehaviour
 {
@@ -362,26 +324,7 @@ public class BarometerEndPatch : MonoBehaviour
         Var.barometerActive = false;
     }
 }
-//[HarmonyPatch(typeof(TrapDoorView),"OnTrapDoorUnlocked")]
-//public class TrapDoorHitboxPatch : MonoBehaviour
-//{
-//    [HarmonyPostfix]
-//    static void Postfix(TrapDoorView __instance, object[] arg0)
-//    {
-//        Debug.Log("TrapDoor fixex");
-//        TrapDoorView[] trapDoors = GameObject.FindObjectsOfType<TrapDoorView>();
-//        foreach (TrapDoorView trapDoor in trapDoors)
-//        {
-//            //we don't ccheck if it already has a box collider attached to it, because it definetely has. we still want to add another one.
-//            BoxCollider boxCollider = trapDoor.gameObject.AddComponent<BoxCollider>();
-//            boxCollider.size = new Vector3(3, 3, 3);
-//            boxCollider.center = new Vector3(0, 2, 0);
-//            boxCollider.isTrigger = true;
 
-
-//        }
-//    }
-//}
 
 
 [HarmonyPatch(typeof(PlayerMovement), "TogglePlayerControls")]
@@ -390,10 +333,7 @@ public class MovementTogglePatch
     [HarmonyPostfix]
     static void Postfix(PlayerMovement __instance)
     {
-        //Var.mainCamera.enabled = true;
-        //Var.uiCamera.enabled = false;
-
-        //GameObject.Destroy(Var.uiCamera.gameObject);
+        
         GameObject laserPointer = null;
         Canvas canva = null;
         try
@@ -427,33 +367,13 @@ public class MovementTogglePatch
         MakePlayer.SetHeight(__instance);
     }
 }
-//[HarmonyPatch(typeof(TheaterControlPanelView), "LockAtPosition")]
-//public class TheaterHandlePatch
-//{
-//    [HarmonyPrefix]
-//    static bool Prefix(TheaterControlPanelView __instance)
-//    {
-//        FieldInfo boxColliderField = AccessTools.Field(typeof(TheaterControlPanelView), "boxCollider");
-//        BoxCollider boxCollider = (BoxCollider)boxColliderField.GetValue(__instance);
-//        FieldInfo isInspectingField = AccessTools.Field(typeof(TheaterControlPanelView), "playerIsInspecting");
-//        bool playerIsInspecting = (bool)isInspectingField.GetValue(__instance);
-//        //EventManager.TriggerEvent("optionsIsPlayerMinigame", true);
-//        EventManager.TriggerEvent("THEATER_PUZZLE_CONTROL_PANEL_INSPECTED", true);
-//        //__instance.handleDirections[controllerFocusIndex].ToggleHighlight(enable: true);
-//        boxCollider.enabled = false;
-//        playerIsInspecting = true;
-//        return false;
 
-//    }
-//}
 [HarmonyPatch(typeof(SpikePuzzleEndTriggerView),"OnTriggerEnter")]
 public class ActivateTheater
 {
     [HarmonyPostfix]
     static void Postfix(SpikePuzzleEndTriggerView __instance)
     {
-        //var onEnterMethod = AccessTools.Method(typeof(TheaterControlPanelView), "LockAtPosition");
-        //onEnterMethod.Invoke(GameObject.FindObjectOfType<TheaterControlPanelView>(),(BindingFlags.Instance | BindingFlags.NonPublic),null, new object[] { },null);
         FieldInfo boxColliderField = AccessTools.Field(typeof(TheaterControlPanelView), "boxCollider");
         BoxCollider boxCollider = (BoxCollider)boxColliderField.GetValue(GameObject.FindObjectOfType<TheaterControlPanelView>());
         FieldInfo isInspectingField = AccessTools.Field(typeof(TheaterControlPanelView), "playerIsInspecting");
@@ -481,22 +401,11 @@ public class CharacterCenterPatch
     {
         FieldInfo characterControllerField = AccessTools.Field(typeof(PlayerMovement), "characterController");
         CharacterController characterController = (CharacterController)characterControllerField.GetValue(__instance);
-        //characterController.center = new Vector3(Camera.main.transform.localPosition.x, characterController.transform.localPosition.y, Camera.main.transform.localPosition.z);
         characterController.height = height;
-        //characterController.center = new Vector3(0, 0, 0);
         return false;
     }
 }
-//[HarmonyPatch(typeof(PlayerMovement), "FixedUpdate")]
-//public class FixedUpdatePatch
-//{
-//    [HarmonyPrefix]
-//    static void Prefix(PlayerMovement __instance)
-//    {
 
-
-//    }
-//}
 [HarmonyPatch(typeof(GameOverSceneController), "Start")]
 public class GameOverPatch:MonoBehaviour
 {
@@ -588,8 +497,6 @@ public class AudioOptionsPatch : MonoBehaviour
 
 
                 boxCollider.size = new Vector3(buttonSize.x, buttonSize.y, 1f);
-                //boxCollider.enabled = true;
-                //boxCollider.isTrigger = true;
             }
             else if (slider.gameObject.GetComponent<BoxCollider>() != null && slider.gameObject.activeSelf == false)
             {
@@ -662,10 +569,6 @@ public class UpdatePatch
 
         }
         
-        //FieldInfo characterControllerField = AccessTools.Field(typeof(PlayerMovement), "characterController");
-        //CharacterController characterController = (CharacterController)characterControllerField.GetValue(__instance);
-        //characterController.center = new Vector3(Camera.main.transform.localPosition.x, characterController.transform.position.y, Camera.main.transform.localPosition.z);
-        //characterController.height = Camera.main.transform.localPosition.y;
 
 
 
@@ -725,33 +628,7 @@ public class WalkieTalkiePatch
 
     }
 }
-//[HarmonyPatch(typeof(WalkieTalkie), "OnInteractionRPC")]
-//public class WalkieTalkieDestroyPatch
-//{
-//    //emergency fallback:
-//    [HarmonyPostfix]
-//    static bool Prefix(WalkieTalkie __instance)
-//    {
-//        return false;
 
-
-
-
-//    }
-//    //static bool Prefix(WalkieTalkie __instance, int playerViewId) // Replace YourClassName with the actual class name
-//    //{
-//    //    FieldInfo pickedUpField = typeof(BasePickup).GetField("pickedUp", BindingFlags.NonPublic | BindingFlags.Instance);
-//    //    bool pickedUp = (bool)pickedUpField.GetValue(__instance);
-//    //    if (!pickedUp)
-//    //    {
-//    //        PhotonView.Find(playerViewId).gameObject.GetComponent<PlayerController>().PickupLeftHandItem(GameObject.Find("WalkieTalkieLibrarian").GetComponent<WalkieTalkie>()); // Replace YourCustomPickupLeftHandItem with your custom method
-//    //        __instance.interactionDistance = 0f;
-//    //        return false; 
-//    //    }
-//    //    return false; 
-//    //}
-
-//}
 [HarmonyPatch(typeof(EyeStartingSlabView), "OnTriggerEnter")]
 public class EyePatch//lmao
 {
