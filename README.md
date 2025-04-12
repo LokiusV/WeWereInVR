@@ -1,5 +1,6 @@
 # WeWereInVR
-
+# THE MOD IS CURRENTLY SEMI-BROKEN
+### If your PC region is set to a place that uses a . instead of a , to seperate decimals, please make sure to replace the , with a . in settings.txt!
 
 
 # About
