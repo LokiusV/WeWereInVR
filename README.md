@@ -1,5 +1,5 @@
 # WeWereInVR
-# THE MOD DOES NOT WORK WITH THE NEWEST VERSION OF THE GAME. PLEASE DOWNGRADE TO THE NOVEMEBER 2020 VERSION!!!
+# THE MOD DOES NOT WORK WITH THE NEWEST VERSION OF THE GAME. WILL FIX ASAP
 ### If your PC region is set to a place that uses a . instead of a , to seperate decimals, please make sure to replace the , with a . in settings.txt!
 
 
